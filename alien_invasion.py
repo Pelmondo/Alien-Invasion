@@ -7,6 +7,7 @@ from settings import Settings
 from ship import Ship
 import game_functions as gf
 
+
 def run_game():
 	# Инициализирует игру и создает объект экрана, также класс Settings
 	pygame.init()
@@ -24,13 +25,9 @@ def run_game():
 		# Отслеживание событий клавиатуры и мышки 
 		gf.check_events(ai_settings,screen,ship, bullets)
 		ship.update()
-		bullets.update()
-
 		# Удаление пульб вышедших за пределы экрана 
-		for bullet in bullets.copy():
-			if bullet.rect.bottom <= 0:
-				bullets.remove(bullet)
-		print(len(bullets))		
+		gf.update_bullets(bullets)
+		# print(len(bullets))		
 
 		# Прорисовка экрана 
 		gf.update_screen(ai_settings,screen,ship, bullets)
